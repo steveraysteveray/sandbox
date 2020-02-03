@@ -1,3 +1,3 @@
 Line 1 here
-for testing s the behavior of a public repo
-and dome more
+for testing the behavior of a public repo
+and some more
