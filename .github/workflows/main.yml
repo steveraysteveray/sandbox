@@ -1,4 +1,4 @@
-name: Run Python Script on Push
+name: Add @base on Push
 
 on: [push]
 
