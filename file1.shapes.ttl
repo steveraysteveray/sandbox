@@ -1,0 +1,63 @@
+# baseURI: https://example/file1
+# imports: http://datashapes.org/dash
+# prefix: file1
+
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix file1: <https://example/file1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example/file1>
+  a owl:Ontology ;
+  owl:imports <http://datashapes.org/dash> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+file1:DestinationClass_1
+  a file1:Location ;
+  rdfs:label "Destination class 1" ;
+.
+file1:Equipment
+  a rdfs:Class ;
+  a sh:NodeShape ;
+  rdfs:label "Equipment" ;
+  rdfs:subClassOf rdfs:Resource ;
+.
+file1:Location
+  a rdfs:Class ;
+  a sh:NodeShape ;
+  rdfs:label "Location" ;
+  rdfs:subClassOf rdfs:Resource ;
+.
+file1:RandomOtherClass
+  a rdfs:Class ;
+  a sh:NodeShape ;
+  rdfs:label "Random other class" ;
+  rdfs:subClassOf rdfs:Resource ;
+.
+file1:StartingClass
+  a rdfs:Class ;
+  a sh:NodeShape ;
+  rdfs:label "Starting class" ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:property file1:isPointOfShape ;
+.
+file1:StartingClass_1
+  a file1:StartingClass ;
+  rdfs:label "Starting class 1" ;
+  file1:isPointOf file1:DestinationClass_1 ;
+.
+file1:isPointOfShape
+  a sh:PropertyShape ;
+  sh:path file1:isPointOf ;
+  sh:or (
+      [
+        sh:class file1:Equipment ;
+      ]
+      [
+        sh:class file1:Location ;
+      ]
+    ) ;
+.

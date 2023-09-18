@@ -1,4 +1,6 @@
-Line 1 here
-for testing of the behavior of a public repo
-and more stuff
-And master2 more.
+# sandbox
+Used for testing the behavior of a public repo
+
+Go to [Best Practices](https://github.com/steveraysteveray/sandbox/wiki/GoodGitPractices)
+
+dfd

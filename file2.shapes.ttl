@@ -1,0 +1,59 @@
+# baseURI: https://example/file2
+# imports: http://datashapes.org/dash
+# imports: https://example/file1
+# prefix: file2
+
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix file1: <https://example/file1#> .
+@prefix file2: <https://example/file2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+file1:isPointOfShape
+sh:deactivated true ;
+.
+file2:isPointOfShape
+  a sh:PropertyShape ;
+    sh:targetClass file1:StartingClass ;
+            sh:path file1:isPointOf ;
+  sh:or (
+      [
+        sh:class file1:Equipment ;
+      ]
+      [
+        sh:class file1:Location ;
+      ]
+      [
+        sh:class file2:SomethingElse ;
+      ]
+    ) ;
+.
+<https://example/file2>
+  a owl:Ontology ;
+  owl:imports <http://datashapes.org/dash> ;
+  owl:imports <https://example/file1> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+file2:SomethingElse
+  a rdfs:Class ;
+  a sh:NodeShape ;
+  rdfs:label "Something else" ;
+  rdfs:subClassOf rdfs:Resource ;
+.
+file2:SomethingElse_1
+  a file2:SomethingElse ;
+  rdfs:label "Something else 1" ;
+.
+file2:StartingClass_1
+  a file1:StartingClass ;
+  rdfs:label "Starting class 1" ;
+  file1:isPointOf file2:SomethingElse_1 ;
+.
+file2:ShouldFail
+a file1:RandomOtherClass ;
+rdfs:label "Should fail" ;
+.
+
