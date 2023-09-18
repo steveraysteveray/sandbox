@@ -30,7 +30,7 @@
 
 bacnet:BACnetDevice
   a rdfs:Class ;
-  rdfs:label "BACnet device" ;
+  rdfs:label "BACnet  device" ;
   rdfs:subClassOf owl:Thing ;
 .
 bacnet:EngineeringUnitsEnumerationValue
