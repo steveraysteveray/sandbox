@@ -17,7 +17,7 @@
 .
 file1:DestinationClass_1
   a file1:Location ;
-  rdfs:label "Destination  class 1" ;
+  rdfs:label "Destination class 1" ;
 .
 file1:Equipment
   a rdfs:Class ;
