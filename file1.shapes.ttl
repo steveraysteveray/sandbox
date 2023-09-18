@@ -1,7 +1,6 @@
 # baseURI: https://example/file1
 # imports: http://datashapes.org/dash
 # prefix: file1
-@base <https://example/file1> .
 
 @prefix dash: <http://datashapes.org/dash#> .
 @prefix file1: <https://example/file1#> .
