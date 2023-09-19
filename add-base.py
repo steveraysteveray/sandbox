@@ -18,9 +18,16 @@ def add_base_if_missing(file_path):
     with open(file_path, 'r') as f:
         lines = f.readlines()
 
-    # Insert the @base declaration before line #4
-    if "@base" not in lines[3]:  # Checking to ensure it's not already added
-        lines.insert(3, f"@base <{base_uri}> .\n")
+    # Find the line number of the first occurrence of '@prefix'
+    prefix_line_number = next((i for i, line in enumerate(lines) if line.startswith("@prefix")), None)
+
+    if prefix_line_number is not None:
+        # Check if @base is already in the file before the first @prefix
+        if all("@base" not in line for line in lines[:prefix_line_number]):
+            lines.insert(prefix_line_number, f"@base <{base_uri}> .\n")
+    else:
+        # If no @prefix is found, just append at the end (or handle in some other manner)
+        lines.append(f"@base <{base_uri}> .\n")
 
     with open(file_path, 'w') as f:
         f.writelines(lines)
