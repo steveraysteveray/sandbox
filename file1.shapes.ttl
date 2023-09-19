@@ -13,7 +13,7 @@
 <https://example/file1>
   a owl:Ontology ;
   owl:imports <http://datashapes.org/dash> ;
-  owl:versionInfo "Created  with TopBraid Composer" ;
+  owl:versionInfo "Created with TopBraid Composer" ;
 .
 file1:DestinationClass_1
   a file1:Location ;
