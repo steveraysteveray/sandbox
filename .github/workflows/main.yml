@@ -3,11 +3,27 @@ name: Add @base on Push
 on: [push]
 
 jobs:
-  run-script:
+  check_commit:
     runs-on: ubuntu-latest
-    if: (!(contains(github.event.commits[0].message, '[AUTO]')))
-
+    outputs:
+      skip: ${{ steps.skip_check.outputs.skip }}
     steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    - id: skip_check
+      run: |
+        MESSAGE=$(git log --format=%B -n 1)
+        if [[ "$MESSAGE" == *"[AUTO]"* ]]; then
+          echo "Commit message contains [AUTO]. Setting skip to true."
+          echo "::set-output name=skip::true"
+        else
+          echo "::set-output name=skip::false"
+        fi
+
+  update_ttl_files:
+    needs: check_commit
+    runs-on: ubuntu-latest
+    if: needs.check_commit.outputs.skip == 'false'    steps:
     - name: Check out code
       uses: actions/checkout@v2
       with:
