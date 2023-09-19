@@ -23,7 +23,8 @@ jobs:
   update_ttl_files:
     needs: check_commit
     runs-on: ubuntu-latest
-    if: needs.check_commit.outputs.skip == 'false'    steps:
+    if: needs.check_commit.outputs.skip == 'false'    
+    steps:
     - name: Check out code
       uses: actions/checkout@v2
       with:
