@@ -64,7 +64,12 @@ jobs:
             
     - name: Commit and Push changes
       run: |
-         git add -u  # Adds only modified files to the staging area
-         git commit -m "Updated .ttl files with base URI [AUTO]"
-         git push    
+        git add -u  # Adds only modified files to the staging area
+        if git diff-index --quiet HEAD --; then
+          echo "No changes to commit"
+        else
+          git commit -m "Updated .ttl files with base URI [AUTO]"
+          git push
+        fi
+      
 
