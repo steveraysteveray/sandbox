@@ -51,6 +51,7 @@ jobs:
         IFS=' ' read -ra ADDR <<< "${{ steps.getfile.outputs.files }}"
         for file in "${ADDR[@]}"; do
           python add-base.py "$file"
+        done
 
     - name: Configure Git
       run: |
@@ -62,4 +63,4 @@ jobs:
          git add -u  # Adds only modified files to the staging area
          git commit -m "Updated .ttl files with base URI [AUTO]"
          git push    
-         done
+
