@@ -43,9 +43,13 @@ jobs:
     - name: Get changed files
       id: getfile
       run: |
-        files=$(git diff-tree --no-commit-id --name-only -r $(git log -n 1 --pretty=format:"%H") | grep ".ttl$")
+        files=$(git diff-tree --no-commit-id --name-only -r $(git log -n 1 --pretty=format:"%H") | grep ".ttl$" || echo "")
+        if [ -z "$files" ]; then
+          echo "No .ttl files changed."
+          exit 0
+        fi
         echo "::set-output name=files::$files"
-    
+      
     - name: Run Python script on changed files
       run: |
         IFS=' ' read -ra ADDR <<< "${{ steps.getfile.outputs.files }}"
@@ -60,7 +64,12 @@ jobs:
             
     - name: Commit and Push changes
       run: |
-         git add -u  # Adds only modified files to the staging area
-         git commit -m "Updated .ttl files with base URI [AUTO]"
-         git push    
+        git add -u  # Adds only modified files to the staging area
+        if git diff-index --quiet HEAD --; then
+          echo "No changes to commit"
+        else
+          git commit -m "Updated .ttl files with base URI [AUTO]"
+          git push
+        fi
+      
 
