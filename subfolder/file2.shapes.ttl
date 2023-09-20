@@ -3,6 +3,7 @@
 # imports: https://example/file1
 # prefix: file2
 
+@base <https://example/file2> .
 @prefix dash: <http://datashapes.org/dash#> .
 @prefix file1: <https://example/file1#> .
 @prefix file2: <https://example/file2#> .
