@@ -54,6 +54,7 @@ jobs:
       run: |
         IFS=$'\n' read -ra ADDR <<< "${{ steps.getfile.outputs.files }}"
         for file in "${ADDR[@]}"; do
+          echo "Processing file: $file"
           python add-base.py "$file"
         done
 
