@@ -43,15 +43,12 @@ jobs:
     - name: Get changed files
       id: getfile
       run: |
-        files=$(git diff-tree --no-commit-id --name-only -r $(git log -n 1 --pretty=format:"%H") | grep ".ttl$" || echo "")
+        files=$(git diff-tree --no-commit-id --name-only -r $(git log -n 1 --pretty=format:"%H") | grep ".ttl$" | tr '\n' ' ' || echo "")
         if [ -z "$files" ]; then
           echo "No .ttl files changed."
           exit 0
         fi
-          echo $files  # Debugging line to check the detected files
-          echo "FILES<<EOF" >> $GITHUB_ENV
-          echo "$files" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+        echo "FILES=$files" >> $GITHUB_ENV
                 
     - name: Echo changed files
       run: |
