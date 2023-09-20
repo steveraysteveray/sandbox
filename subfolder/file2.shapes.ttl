@@ -3,7 +3,6 @@
 # imports: https://example/file1
 # prefix: file2
 
-@base <https://example/file2> .
 @prefix dash: <http://datashapes.org/dash#> .
 @prefix file1: <https://example/file1#> .
 @prefix file2: <https://example/file2#> .
@@ -20,7 +19,7 @@ file1:isPointOfShape
   a owl:Ontology ;
   owl:imports <http://datashapes.org/dash> ;
   owl:imports <https://example/file1> ;
-  owl:versionInfo "Created  with        TopBraid Composer" ;
+  owl:versionInfo "Created  with         TopBraid Composer" ;
 .
 file2:ShouldFail
   a file1:RandomOtherClass ;

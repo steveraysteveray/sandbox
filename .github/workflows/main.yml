@@ -48,7 +48,7 @@ jobs:
           echo "No .ttl files changed."
           exit 0
         fi
-        echo "::set-output name=files::$files"
+        echo $files
       
     - name: Echo changed files
       run: |
