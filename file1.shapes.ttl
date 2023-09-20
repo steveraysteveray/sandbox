@@ -2,7 +2,6 @@
 # imports: http://datashapes.org/dash
 # prefix: file1
 
-@base <https://example/file1> .
 @prefix dash: <http://datashapes.org/dash#> .
 @prefix file1: <https://example/file1#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -14,7 +13,7 @@
 <https://example/file1>
   a owl:Ontology ;
   owl:imports <http://datashapes.org/dash> ;
-  owl:versionInfo "Created with            TopBraid Composer" ;
+  owl:versionInfo "Created with             TopBraid Composer" ;
 .
 file1:DestinationClass_1
   a file1:Location ;
