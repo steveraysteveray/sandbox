@@ -50,6 +50,10 @@ jobs:
         fi
         echo "::set-output name=files::$files"
       
+    - name: Echo changed files
+      run: |
+        echo "Changed files: ${{ steps.getfile.outputs.files }}"
+      
     - name: Run Python script on changed files
       run: |
         IFS=$'\n' read -ra ADDR <<< "${{ steps.getfile.outputs.files }}"
