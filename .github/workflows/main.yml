@@ -59,7 +59,7 @@ jobs:
       
     - name: Run Python script on changed files
       run: |
-        IFS=$'\n' read -ra ADDR <<< "$FILES"
+        IFS=' ' read -ra ADDR <<< "$FILES"  # Split on spaces
         for file in "${ADDR[@]}"; do
           echo "Processing file: $file"
           python add-base.py "$file"
