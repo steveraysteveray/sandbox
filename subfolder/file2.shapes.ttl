@@ -13,29 +13,17 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 file1:isPointOfShape
-sh:deactivated true ;
-.
-file2:isPointOfShape
-  a sh:PropertyShape ;
-    sh:targetClass file1:StartingClass ;
-            sh:path file1:isPointOf ;
-  sh:or (
-      [
-        sh:class file1:Equipment ;
-      ]
-      [
-        sh:class file1:Location ;
-      ]
-      [
-        sh:class file2:SomethingElse ;
-      ]
-    ) ;
+  sh:deactivated true ;
 .
 <https://example/file2>
   a owl:Ontology ;
   owl:imports <http://datashapes.org/dash> ;
   owl:imports <https://example/file1> ;
-  owl:versionInfo "Created with TopBraid Composer" ;
+  owl:versionInfo "Created  with TopBraid Composer" ;
+.
+file2:ShouldFail
+  a file1:RandomOtherClass ;
+  rdfs:label "Should fail" ;
 .
 file2:SomethingElse
   a rdfs:Class ;
@@ -52,8 +40,19 @@ file2:StartingClass_1
   rdfs:label "Starting class 1" ;
   file1:isPointOf file2:SomethingElse_1 ;
 .
-file2:ShouldFail
-a file1:RandomOtherClass ;
-rdfs:label "Should fail" ;
+file2:isPointOfShape
+  a sh:PropertyShape ;
+  sh:path file1:isPointOf ;
+  sh:or (
+      [
+        sh:class file1:Equipment ;
+      ]
+      [
+        sh:class file1:Location ;
+      ]
+      [
+        sh:class file2:SomethingElse ;
+      ]
+    ) ;
+  sh:targetClass file1:StartingClass ;
 .
-
