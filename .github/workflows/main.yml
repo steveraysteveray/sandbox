@@ -52,7 +52,7 @@ jobs:
       
     - name: Run Python script on changed files
       run: |
-        IFS=' ' read -ra ADDR <<< "${{ steps.getfile.outputs.files }}"
+        IFS=$'\n' read -ra ADDR <<< "${{ steps.getfile.outputs.files }}"
         for file in "${ADDR[@]}"; do
           python add-base.py "$file"
         done
