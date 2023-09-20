@@ -48,15 +48,16 @@ jobs:
           echo "No .ttl files changed."
           exit 0
         fi
-        echo $files
+          echo $files  # Debugging line to check the detected files
+          echo "FILES=$files" >> $GITHUB_ENV
       
     - name: Echo changed files
       run: |
-        echo "Changed files: ${{ steps.getfile.outputs.files }}"
+        echo "Changed files: $FILES"
       
     - name: Run Python script on changed files
       run: |
-        IFS=$'\n' read -ra ADDR <<< "${{ steps.getfile.outputs.files }}"
+        IFS=$'\n' read -ra ADDR <<< "$FILES"
         for file in "${ADDR[@]}"; do
           echo "Processing file: $file"
           python add-base.py "$file"
