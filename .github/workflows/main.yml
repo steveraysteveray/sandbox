@@ -49,8 +49,10 @@ jobs:
           exit 0
         fi
           echo $files  # Debugging line to check the detected files
-          echo "FILES=$files" >> $GITHUB_ENV
-      
+          echo "FILES<<EOF" >> $GITHUB_ENV
+          echo "$files" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+                
     - name: Echo changed files
       run: |
         echo "Changed files: $FILES"
